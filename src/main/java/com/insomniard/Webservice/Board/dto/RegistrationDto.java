@@ -7,13 +7,13 @@ import lombok.NoArgsConstructor;
 
 @Getter
 @NoArgsConstructor
-public class BoardDto {
+public class RegistrationDto {
     private String title;
     private String contents;
     private String author;
 
     @Builder
-    public BoardDto(String title, String contents, String author) {
+    public RegistrationDto(String title, String contents, String author) {
         this.title = title;
         this.contents = contents;
         this.author = author;
