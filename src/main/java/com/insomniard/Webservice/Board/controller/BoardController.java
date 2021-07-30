@@ -13,17 +13,17 @@ import org.springframework.web.bind.annotation.*;
 public class BoardController {
     private final BoardService boardService;
 
-    @PostMapping("/api/v1/registration")
-    public Long save(@RequestBody RegistrationDto dto){
-        return boardService.save(dto);
+    @PostMapping("/api/v1/board")
+    public Long save(@RequestBody RegistrationDto registrationDto){
+        return boardService.save(registrationDto);
     }
 
-    @PutMapping("/api/v1/registration/{boardId}")
+    @PutMapping("/api/v1/board/{boardId}")
     public Long update(@PathVariable Long boardId, @RequestBody updateDto dto){
         return boardService.update(boardId, dto);
     }
 
-    @GetMapping("/api/v1/registration/{id}")
+    @GetMapping("/api/v1/board/{boardId}")
     public ReadDto findById(@PathVariable Long boardId){
         return boardService.findById(boardId);
     }

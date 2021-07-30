@@ -18,7 +18,7 @@ public class Board extends BaseEntity{
     @Column(length = 500, nullable = false)
     private String title;
 
-    @Column(columnDefinition = "TEXT",nullable = false)
+    @Column(columnDefinition = "TEXT",nullable = true)
     private String contents;
 
     private String author;

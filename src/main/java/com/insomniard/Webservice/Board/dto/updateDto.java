@@ -16,4 +16,5 @@ public class updateDto {
         this.title = title;
         this.contents = contents;
     }
+
 }
