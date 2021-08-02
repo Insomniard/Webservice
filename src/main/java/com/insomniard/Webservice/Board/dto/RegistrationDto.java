@@ -26,4 +26,5 @@ public class RegistrationDto {
                 .author(author)
                 .build();
     }
+
 }
