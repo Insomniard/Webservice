@@ -27,5 +27,10 @@ public class BoardController {
     public ReadDto findById(@PathVariable Long boardId){
         return boardService.findById(boardId);
     }
+    @DeleteMapping("api/v1/board/{boardId}")
+    public Long delete(@PathVariable Long boardId){
+        boardService.delete(boardId);
+        return boardId;
+    }
 
 }
