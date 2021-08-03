@@ -3,6 +3,7 @@ package com.insomniard.Webservice.Board.controller;
 import com.insomniard.Webservice.Board.Repository.BoardRepository;
 import com.insomniard.Webservice.Board.dto.ReadDto;
 import com.insomniard.Webservice.Board.service.BoardService;
+import com.insomniard.Webservice.config.auth.LoginUser;
 import com.insomniard.Webservice.config.dto.SessionUser;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -15,19 +16,17 @@ import javax.servlet.http.HttpSession;
 @RequiredArgsConstructor
 @Controller
 public class IndexController {
-    private final BoardRepository boardRepository;
     private final BoardService boardService;
-    private final HttpSession httpSession;
 
     @GetMapping("/")
-    public String index(Model model){
+    public String index(Model model, @LoginUser SessionUser user){
         model.addAttribute("board",boardService.findAllDesc());
-        SessionUser user = (SessionUser) httpSession.getAttribute("user");
         if(user != null){
             model.addAttribute("userName",user.getName());
         }
         return "index";
     }
+
     @GetMapping("/board/registration")
     public String registration(){
         return "boardRegistration";
