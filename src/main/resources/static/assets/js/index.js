@@ -69,5 +69,4 @@ var main = {
         });
     }
 };
-
 main.init();
