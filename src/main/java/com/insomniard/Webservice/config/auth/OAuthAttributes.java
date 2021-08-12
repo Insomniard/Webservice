@@ -42,9 +42,9 @@ public class OAuthAttributes {
         Map<String, Object> profile = (Map<String, Object>) response.get("profile");
 
         return OAuthAttributes.builder()
-                .name((String) profile.get("profile_nickname"))
-                .email((String) response.get("account_email"))
-                .picture((String) profile.get("profile_image"))
+                .name((String) profile.get("nickname"))
+                .email((String) response.get("email"))
+                .picture((String) profile.get("profile_image_url"))
                 .attributes(attributes)
                 .nameAttributeKey(userNAmeAttributeName).build();
     }
