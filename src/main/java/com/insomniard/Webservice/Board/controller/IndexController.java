@@ -26,6 +26,10 @@ public class IndexController {
         }
         return "index";
     }
+    @GetMapping("/loginBoard")
+    public String loginBoard(){
+        return "loginBoard";
+    }
 
     @GetMapping("/board/registration")
     public String registration(){
