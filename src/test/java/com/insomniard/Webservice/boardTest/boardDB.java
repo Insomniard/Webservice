@@ -13,20 +13,24 @@ import java.util.stream.IntStream;
 
 @SpringBootTest
 public class boardDB {
-    @Autowired
-    private BoardRepository boardRepository;
-
-    @Test
-    public void insertTest(){
-        IntStream.rangeClosed(1, 100).forEach(i->{
-            Board board = Board.builder()
-                    .title("Title test"+i)
-                    .contents("Content test"+i)
-                    .author("author test"+i)
-                    .build();
-            System.out.println(boardRepository.save(board));
-        });
-    }
+//    @Autowired
+//    private BoardRepository boardRepository;
+//
+//    @Test
+//    public void insertTest(){
+//        LocalDateTime now = LocalDateTime.of(2021,07,28,17,39);
+//        IntStream.rangeClosed(101, 300).forEach(i->{
+//            Board board = Board.builder()
+//                    .title("Title Dummy"+i)
+//                    .contents("Content Dummy"+i)
+//                    .author("author Dummy"+i)
+//                    .build();
+//            boardRepository.save(board);
+//            assertThat(board.getRegistrationTime().isAfter(now));
+//            assertThat(board.getUpdateTime().isAfter(now));
+//
+//        });
+//    }
 
 
 //    @Test

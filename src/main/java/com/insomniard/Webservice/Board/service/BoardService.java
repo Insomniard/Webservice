@@ -35,7 +35,7 @@ public class BoardService {
     }
     @Transactional(readOnly = true)
     public List<ReadListDto> findAllDesc(){
-        return boardRepository.findAllDesc().stream().map(board -> new ReadListDto(board)).collect(Collectors.toList());
+        return boardRepository.findFirst20ByOrderByBoardIdDesc().stream().map(board -> new ReadListDto(board)).collect(Collectors.toList());
 
     }
     @Transactional
