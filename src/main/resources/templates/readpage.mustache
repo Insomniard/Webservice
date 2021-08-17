@@ -30,9 +30,15 @@
                 <td>{{author}}</td>
                 <td>{{updateTime}}</td>
             </tr>
-        {{/board}}
         </tbody>
+        {{/board}}
     </table>
+
+    <ul class="pagination justify-content-center">
+        <li class="page-item"><a class="page-link" href="?page={{previous}}"></a></li>
+        <li class="page-item"><a class="page-link" href="?page={{next}}"></a></li>
+    </ul>
+
 </div>
 
 {{>layout/footer}}

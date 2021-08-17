@@ -7,6 +7,7 @@ import com.insomniard.Webservice.Board.dto.RegistrationDto;
 import com.insomniard.Webservice.Board.dto.updateDto;
 import com.insomniard.Webservice.Board.entity.Board;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -34,8 +35,8 @@ public class BoardService {
         return new ReadDto(entity);
     }
     @Transactional(readOnly = true)
-    public List<ReadListDto> findAllDesc(){
-        return boardRepository.findFirst20ByOrderByBoardIdDesc().stream().map(board -> new ReadListDto(board)).collect(Collectors.toList());
+    public List<ReadListDto> findAllDesc(Pageable pageable){
+        return boardRepository.findFirst20ByOrderByBoardIdDesc(pageable).stream().map(board -> new ReadListDto(board)).collect(Collectors.toList());
 
     }
     @Transactional
