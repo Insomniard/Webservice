@@ -1,5 +1,7 @@
 
+let pagenum = 0;
 var main = {
+
     init : function (){
         var _this = this;
         $('#btn-registration').on('click',function (){
@@ -12,7 +14,26 @@ var main = {
         $('#btn-delete').on('click', function () {
             _this.delete();
         });
+        $('#btn-read').on('click', function () {
+            _this.read();
+        });
     },
+
+    // read : function () {
+    //     var data = {
+    //         title : $('#title').val(),
+    //         author: $('#author').val(),
+    //         contents: $('#content').val()
+    //     };
+    //
+    //     $.ajax({
+    //         type: 'GET',
+    //         url: '/api/v1/board/readpage',
+    //         dataType: 'json',
+    //         contentType:'application/json; charset=utf-8',
+    //         data: JSON.stringify(data)
+    //     })
+    // },
 
     save : function (){
         var data = {
@@ -69,4 +90,12 @@ var main = {
         });
     }
 };
+//
+// function loadpaging (){
+//     var boardId = $('#boardId').val();
+//     pagenum++;
+//     location.replace('/readpage?page='+pagenum);
+//     console.log("got it?"+pagenum);
+//
+// }
 main.init();

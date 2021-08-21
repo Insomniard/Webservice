@@ -19,22 +19,21 @@ public class IndexController {
     private final BoardService boardService;
 
     @GetMapping("/")
-    public String index(Model model,@LoginUser SessionUser user){
-        if(user != null){
+    public String index(Model model, @LoginUser SessionUser user, @PageableDefault(size = 20,sort = "boardId",direction = Sort.Direction.DESC)Pageable pageable){
+        if(user == null){
             System.out.println("넘어갔");
 //            readpage(model,user);
-            return "readpage";
+            return "loginBoard";
         }
-        else return "index";
+        else{
+            model.addAttribute("userName",user.getName());
+            model.addAttribute("board",boardService.findAllDesc(pageable));
+            model.addAttribute("previous",pageable.previousOrFirst().getPageNumber());
+            model.addAttribute("next",pageable.next().getPageNumber());
+            return "index";
+        }
     }
-    @GetMapping("/readpage")
-    public String readpage(Model model, @LoginUser SessionUser user, @PageableDefault(size = 20,sort = "boardId",direction = Sort.Direction.DESC)Pageable pageable){
-        model.addAttribute("userName",user.getName());
-        model.addAttribute("board",boardService.findAllDesc(pageable));
-        model.addAttribute("previous",pageable.previousOrFirst().getPageNumber());
-        model.addAttribute("next",pageable.next().getPageNumber());
-        return "readpage";
-    }
+
     @GetMapping("/loginBoard")
     public String loginBoard(){
         return "loginBoard";
