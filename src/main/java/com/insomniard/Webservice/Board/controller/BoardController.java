@@ -13,31 +13,31 @@ import java.util.List;
 
 @RequiredArgsConstructor
 @RestController
-
+@RequestMapping("/api/v1/board")
 public class BoardController {
     private final BoardService boardService;
 
-    @PostMapping("/api/v1/board")
+    @PostMapping("")
     public Long save(@RequestBody RegistrationDto registrationDto){
         return boardService.save(registrationDto);
     }
 
-    @PutMapping("/api/v1/board/{boardId}")
+    @PutMapping("/{boardId}")
     public Long update(@PathVariable Long boardId, @RequestBody updateDto dto){
         return boardService.update(boardId, dto);
     }
 
-    @GetMapping("/api/v1/board/{boardId}")
+    @GetMapping("/{boardId}")
     public ReadDto findById(@PathVariable Long boardId){
         return boardService.findById(boardId);
     }
 
-    @GetMapping("/api/v1/board/readpage")
+    @GetMapping("/readpage")
     public List<ReadListDto> findAllDesc(Pageable pageable){
         return boardService.findAllDesc(pageable);
     }
 
-    @DeleteMapping("api/v1/board/{boardId}")
+    @DeleteMapping("/{boardId}")
     public Long delete(@PathVariable Long boardId){
         boardService.delete(boardId);
         return boardId;
