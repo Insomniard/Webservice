@@ -1,6 +1,7 @@
 package com.insomniard.Webservice.commit.dto;
 
 import com.insomniard.Webservice.Board.entity.Board;
+import com.insomniard.Webservice.commit.entity.Commit;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -18,8 +19,8 @@ public class CommitRegistrationDto {
         this.author = author;
     }
 
-    public Board toEntity(){
-        return Board.builder()
+    public Commit toEntity(){
+        return Commit.builder()
                 .contents(contents)
                 .author(author)
                 .build();
