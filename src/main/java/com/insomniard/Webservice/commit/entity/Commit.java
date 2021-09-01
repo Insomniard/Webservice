@@ -1,6 +1,7 @@
 package com.insomniard.Webservice.commit.entity;
 
 import com.insomniard.Webservice.Board.entity.BaseEntity;
+import com.insomniard.Webservice.Board.entity.Board;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -19,6 +20,9 @@ public class Commit extends BaseEntity {
     private String contents;
 
     private String author;
+
+    @ManyToOne
+    private Board board;
 
     @Builder
     public Commit(String title, String contents, String author) {
