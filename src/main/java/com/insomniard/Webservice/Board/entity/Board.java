@@ -1,5 +1,6 @@
 package com.insomniard.Webservice.Board.entity;
 
+import com.insomniard.Webservice.Account.domain.User;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -22,6 +23,9 @@ public class Board extends BaseEntity{
     private String contents;
 
     private String author;
+
+    @ManyToOne
+    private User user;
 
     @Builder
     public Board(String title, String contents, String author) {
