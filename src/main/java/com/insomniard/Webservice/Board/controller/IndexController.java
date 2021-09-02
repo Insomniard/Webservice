@@ -21,15 +21,11 @@ public class IndexController {
     @GetMapping("/")
     public String index(Model model, @LoginUser SessionUser user, @PageableDefault(size = 20,sort = "boardId",direction = Sort.Direction.DESC)Pageable pageable){
         if(user == null){
-            System.out.println("넘어갔");
-//            readpage(model,user);
             return "loginBoard";
         }
         else{
             model.addAttribute("userName",user.getName());
             model.addAttribute("board",boardService.findAllDesc(pageable));
-            model.addAttribute("previous",pageable.previousOrFirst().getPageNumber());
-            model.addAttribute("next",pageable.next().getPageNumber());
             return "index";
         }
     }
@@ -49,6 +45,4 @@ public class IndexController {
         model.addAttribute("board",dto);
         return "boardUpdate";
     }
-
-
 }
