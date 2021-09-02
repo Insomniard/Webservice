@@ -30,15 +30,18 @@ public class BoardService {
         board.update(dto.getTitle(), dto.getContents());
         return boardId;
     }
+
     public ReadDto findById (Long boardId){
         Board entity = boardRepository.findById(boardId).orElseThrow(() -> new IllegalArgumentException("게시글이 존재하지 않습니다. No = " +boardId));
         return new ReadDto(entity);
     }
+
     @Transactional(readOnly = true)
     public List<ReadListDto> findAllDesc(Pageable pageable){
         return boardRepository.findFirst20ByOrderByBoardIdDesc(pageable).stream().map(board -> new ReadListDto(board)).collect(Collectors.toList());
 
     }
+
     @Transactional
     public void delete(Long boardId){
         Board board = boardRepository.findById(boardId).orElseThrow(() -> new IllegalArgumentException("게시글이 존재하지 않습니다. No = " +boardId));
