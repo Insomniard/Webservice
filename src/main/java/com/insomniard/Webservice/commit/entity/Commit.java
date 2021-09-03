@@ -16,12 +16,13 @@ public class Commit extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long commitId;
 
-    @Column(columnDefinition = "TEXT",nullable = true)
+    @Column(columnDefinition = "TEXT",nullable = false)
     private String contents;
 
     private String author;
 
     @ManyToOne
+    @JoinColumn(name = "board_id")
     private Board board;
 
     @Builder

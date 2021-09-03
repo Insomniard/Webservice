@@ -6,6 +6,7 @@ import com.insomniard.Webservice.commit.entity.Commit;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -14,6 +15,7 @@ import java.util.List;
 @Getter
 @NoArgsConstructor
 @Entity
+@ToString(exclude = "boards")
 public class User extends BaseEntity {
 
     @Id
@@ -23,8 +25,7 @@ public class User extends BaseEntity {
     @Column(nullable = false)
     private String name;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    private List<Board> boards = new ArrayList<>();
+
 
     @Column(nullable = false)
     private String email;
@@ -32,6 +33,8 @@ public class User extends BaseEntity {
     @Column
     private String picture;
 
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<Board> boards = new ArrayList<>();
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
