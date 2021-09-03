@@ -12,6 +12,10 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.IntStream;
+import java.util.stream.LongStream;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
@@ -42,10 +46,25 @@ public class CommitDB {
     }
 
     @Test
-    public void 연관관계테스트(){
-        User user = User.builder().email("insomniaard@gamil.com").build();
-        Board board = Board.builder().title("Jeong test1").contents("Jeong test1").author(user).build();
-        boardRepository.save(board);
+    public void 댓글테스트(){
+        User user = userRepository.findByUserId(1L);
+        IntStream.rangeClosed(0, 100).forEach(i ->{
+            long boardId = (long)(Math.random() * 100) + 1;
+            Board board = boardRepository.findByBoardId(boardId);
+            Commit commit = Commit.builder()
+                    .contents("test commit" + i)
+                    .board(board)
+                    .author(user.getName())
+                    .build();
+            commitRepository.save(commit);
+        });
+    }
+
+    @Test
+    public void 게시글댓글조회(){
+            Optional<Commit> test = commitRepository.findById(50L);
+            Commit commit = test.get();
+            System.out.println("Commit : " + commit.toString());
     }
 }
 

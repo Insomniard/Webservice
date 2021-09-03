@@ -15,10 +15,13 @@ import java.util.stream.IntStream;
 
 @SpringBootTest
 public class boardDB {
+
     @Autowired
     private BoardRepository boardRepository;
+
     @Autowired
     private UserRepository userRepository;
+
     @Test
     public void insertTest(){
         Optional<User> name = userRepository.findById(1L);
@@ -37,6 +40,7 @@ public class boardDB {
 
         });
     }
+
     @Test
     public void Join이되었나요(){
         Optional<Board> test = boardRepository.findById(58L);
