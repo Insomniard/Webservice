@@ -2,10 +2,7 @@ package com.insomniard.Webservice.Board.entity;
 
 import com.insomniard.Webservice.Account.domain.User;
 import com.insomniard.Webservice.commit.entity.Commit;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
 import javax.persistence.*;
@@ -15,7 +12,7 @@ import java.util.List;
 @NoArgsConstructor
 @Entity
 @Getter
-@Setter
+@ToString(exclude = "commits")
 public class Board extends BaseEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
