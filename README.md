@@ -20,9 +20,13 @@ www.jjyyeong.com
 
 ###   DB 설계
 
-![Domain](https://user-images.githubusercontent.com/51487025/132127053-1447df72-efdb-46ec-b4d7-31d37e92fc10.png)
-![Entity](https://user-images.githubusercontent.com/51487025/132127055-79bb874d-7853-46ee-953f-4d11478eb0c5.png)
-![table](https://user-images.githubusercontent.com/51487025/132127058-911f7a15-7c3a-43c9-b46e-15266c5edb90.png)
+![Domain](https://user-images.githubusercontent.com/51487025/132127142-1b3896a9-45ec-4374-a9d3-0bb2429a5c80.png)
+
+![Entity](https://user-images.githubusercontent.com/51487025/132127148-015b773b-b38b-4450-8d83-d1751bafeb5e.png)
+
+![table](https://user-images.githubusercontent.com/51487025/132127150-0f155626-1121-40f2-a236-4d27bab9f3bf.png)
+
+
 
 
 
