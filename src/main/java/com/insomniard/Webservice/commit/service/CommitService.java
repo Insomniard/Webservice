@@ -15,4 +15,5 @@ public class CommitService {
     public Long registration(CommitRegistrationDto commitRegistrationDto){
         return commitRepository.save(commitRegistrationDto.toEntity()).getCommitId();
     }
+
 }

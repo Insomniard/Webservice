@@ -46,7 +46,7 @@ public class CommitDB {
     }
 
     @Test
-    public void 댓글테스트(){
+    public void 댓테스트(){
         User user = userRepository.findByUserId(1L);
         IntStream.rangeClosed(0, 100).forEach(i ->{
             long boardId = (long)(Math.random() * 100) + 1;
@@ -61,10 +61,12 @@ public class CommitDB {
     }
 
     @Test
-    public void 게시글댓글조회(){
-            Optional<Commit> test = commitRepository.findById(50L);
+    public void 특정댓글조회(){
+            Optional<Commit> test = commitRepository.findById(22L);
             Commit commit = test.get();
             System.out.println("Commit : " + commit.toString());
     }
+
+
 }
 
