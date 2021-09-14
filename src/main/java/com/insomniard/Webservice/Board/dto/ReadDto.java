@@ -1,7 +1,10 @@
 package com.insomniard.Webservice.Board.dto;
 
 import com.insomniard.Webservice.Board.entity.Board;
+import com.insomniard.Webservice.commit.entity.Commit;
 import lombok.Getter;
+
+import java.util.List;
 
 @Getter
 public class ReadDto {

@@ -11,11 +11,13 @@ import com.insomniard.Webservice.commit.dto.CommitRegistrationDto;
 import com.insomniard.Webservice.commit.entity.Commit;
 import com.insomniard.Webservice.commit.repository.CommitRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @RequiredArgsConstructor
 @Service
+@Repository
 public class CommitService {
     private final UserRepository userRepository;
     private final CommitRepository commitRepository;

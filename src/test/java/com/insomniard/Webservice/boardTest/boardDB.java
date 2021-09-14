@@ -59,8 +59,6 @@ public class boardDB {
         System.out.println("User : " + board.getUser().toString());
     }
 
-
-
     @Test
     public void 댓글등록서비테스트(){
         CommitRegistrationDto dto = CommitRegistrationDto.builder()

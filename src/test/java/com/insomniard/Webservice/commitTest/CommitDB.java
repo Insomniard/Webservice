@@ -3,6 +3,7 @@ package com.insomniard.Webservice.commitTest;
 import com.insomniard.Webservice.Account.domain.User;
 import com.insomniard.Webservice.Account.domain.UserRepository;
 import com.insomniard.Webservice.Board.Repository.BoardRepository;
+import com.insomniard.Webservice.Board.dto.ReadDto;
 import com.insomniard.Webservice.Board.entity.Board;
 import com.insomniard.Webservice.commit.dto.CommitReadDto;
 import com.insomniard.Webservice.commit.dto.CommitRegistrationDto;
@@ -12,6 +13,7 @@ import com.insomniard.Webservice.commit.service.CommitService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -54,7 +56,7 @@ public class CommitDB {
     @Test
     public void 댓테스트(){
         User user = userRepository.findByUserId(1L);
-        IntStream.rangeClosed(0, 100).forEach(i ->{
+        IntStream.rangeClosed(0, 300).forEach(i ->{
             long boardId = (long)(Math.random() * 100) + 1;
             Board board = boardRepository.findByBoardId(boardId);
             Commit commit = Commit.builder()
@@ -64,6 +66,29 @@ public class CommitDB {
                     .build();
             commitRepository.save(commit);
         });
+    }
+
+    //레이지와 에거의 차이
+    //지연로딩과 즉시로딩
+    //왠만해서는 지연로딩을 쓴다.
+    //왜 와이
+    //보드 정보만 필요한데 즉시도링이면 쓸데없이 댓글정까지 다 가져온다.
+    //그래서 레이지로 조져놓고 댓글 필요할때만 겟커밋으로 가져오면
+    //그떄 쿼리가 또 날라간다. ㅇㅋ ㄱㅅㄱㅅ
+    // N+1 문제를 해결하기 위해서 페치조인 fetch join?
+    @Test
+    @Transactional//여러가지 트렌젝션을 묶어서 롤백도시켜주는 개 혜자 어노테이션
+    public void 게시글조회테스트(){
+        Optional<Board> optBoard = boardRepository.findById(60L);
+        System.out.println(optBoard.isPresent());
+       // System.out.println("123123123");
+        Board board = optBoard.get();
+        System.out.println(board.getBoardId());
+        List<Commit> commits = board.getCommit();
+        System.out.println(commits.toString());
+//        commits.forEach(c -> System.out.println(c.getCommitId()));
+        //System.out.println(board.toString() + commits.toString());
+
     }
 
 //        @Test
