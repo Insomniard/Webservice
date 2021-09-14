@@ -12,7 +12,7 @@ import java.util.List;
 @NoArgsConstructor
 @Entity
 @Getter
-@ToString(exclude = "commits")
+@ToString(exclude = "commit")
 public class Board extends BaseEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,19 +28,22 @@ public class Board extends BaseEntity{
     private String author;
 
     @ManyToOne
-    @JoinColumn(name = "id")
+    @JoinColumn(name = "user_id")
     private User user;
 
     @OneToMany(mappedBy = "board",cascade = CascadeType.ALL)
-    private List<Commit> commits = new ArrayList<>();
+    @JoinColumn(name = "commit_id")
+    private List<Commit> commit;
 
     @Builder
-    public Board(User user,String title, String contents, String author) {
+    public Board(User user,String title, String contents, String author, List<Commit> commit) {
         this.title = title;
         this.contents = contents;
         this.author = author;
         this.user = user;
+        this.commit = new ArrayList<Commit>();
     }
+
     public void update(String title, String contents){
         this.title = title;
         this.contents = contents;

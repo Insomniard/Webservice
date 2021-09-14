@@ -6,6 +6,8 @@ import com.insomniard.Webservice.Board.dto.ReadListDto;
 import com.insomniard.Webservice.Board.dto.RegistrationDto;
 import com.insomniard.Webservice.Board.dto.updateDto;
 import com.insomniard.Webservice.Board.entity.Board;
+import com.insomniard.Webservice.commit.entity.Commit;
+import com.insomniard.Webservice.commit.repository.CommitRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -18,6 +20,7 @@ import java.util.stream.Collectors;
 @Service
 public class BoardService {
     private final BoardRepository boardRepository;
+    private final CommitRepository commitRepository;
 
     @Transactional
     public Long save(RegistrationDto registrationDto){
@@ -33,6 +36,7 @@ public class BoardService {
 
     public ReadDto findById (Long boardId){
         Board entity = boardRepository.findById(boardId).orElseThrow(() -> new IllegalArgumentException("게시글이 존재하지 않습니다. No = " +boardId));
+//        entity.getCommit().get(findAllDesc()) = commitRepository.findByBoardId(boardId);
         return new ReadDto(entity);
     }
 

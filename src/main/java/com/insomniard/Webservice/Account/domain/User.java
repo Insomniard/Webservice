@@ -15,7 +15,7 @@ import java.util.List;
 @Getter
 @NoArgsConstructor
 @Entity
-@ToString(exclude = "boards")
+@ToString(exclude = "board")
 public class User extends BaseEntity {
 
     @Id
@@ -25,8 +25,6 @@ public class User extends BaseEntity {
     @Column(nullable = false)
     private String name;
 
-
-
     @Column(nullable = false)
     private String email;
 
@@ -34,7 +32,7 @@ public class User extends BaseEntity {
     private String picture;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    private List<Board> boards = new ArrayList<>();
+    private List<Board> board;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
@@ -51,7 +49,6 @@ public class User extends BaseEntity {
     public User update(String name, String picture) {
         this.name = name;
         this.picture = picture;
-
         return this;
     }
 

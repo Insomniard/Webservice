@@ -13,7 +13,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Entity
 @Getter
-@ToString
+@ToString(exclude = "board")
 public class Commit extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -34,7 +34,7 @@ public class Commit extends BaseEntity {
         this.author = author;
         this.board = board;
     }
-    public void update(String title, String contents){
+    public void update(String contents){
         this.contents = contents;
     }
 }

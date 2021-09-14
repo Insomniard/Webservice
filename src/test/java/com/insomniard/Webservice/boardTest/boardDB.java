@@ -4,6 +4,10 @@ import com.insomniard.Webservice.Account.domain.User;
 import com.insomniard.Webservice.Account.domain.UserRepository;
 import com.insomniard.Webservice.Board.Repository.BoardRepository;
 import com.insomniard.Webservice.Board.entity.Board;
+import com.insomniard.Webservice.commit.dto.CommitRegistrationDto;
+import com.insomniard.Webservice.commit.entity.Commit;
+import com.insomniard.Webservice.commit.repository.CommitRepository;
+import com.insomniard.Webservice.commit.service.CommitService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -21,6 +25,12 @@ public class boardDB {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private CommitRepository commitRepository;
+
+    @Autowired
+    private CommitService service;
 
     @Test
     public void insertTest(){
@@ -47,6 +57,16 @@ public class boardDB {
         Board board = test.get();
         System.out.println("Board : " + board.toString());
         System.out.println("User : " + board.getUser().toString());
+    }
+
+
+
+    @Test
+    public void 댓글등록서비테스트(){
+        CommitRegistrationDto dto = CommitRegistrationDto.builder()
+                .contents("test 1")
+                .author("jjyyong").build();
+        Long commitId = service.registration(dto);
     }
 
 //    @Test

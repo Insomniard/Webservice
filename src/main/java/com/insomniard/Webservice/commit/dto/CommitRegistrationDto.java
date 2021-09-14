@@ -14,7 +14,7 @@ public class CommitRegistrationDto {
     private String author;
 
     @Builder
-    public CommitRegistrationDto(String title, String contents, String author) {
+    public CommitRegistrationDto(String contents, String author) {
         this.contents = contents;
         this.author = author;
     }

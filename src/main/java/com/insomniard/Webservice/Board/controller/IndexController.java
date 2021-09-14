@@ -2,6 +2,8 @@ package com.insomniard.Webservice.Board.controller;
 
 import com.insomniard.Webservice.Board.dto.ReadDto;
 import com.insomniard.Webservice.Board.service.BoardService;
+import com.insomniard.Webservice.commit.dto.CommitReadDto;
+import com.insomniard.Webservice.commit.service.CommitService;
 import com.insomniard.Webservice.config.auth.LoginUser;
 import com.insomniard.Webservice.config.dto.SessionUser;
 import lombok.RequiredArgsConstructor;
@@ -17,6 +19,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 @Controller
 public class IndexController {
     private final BoardService boardService;
+    private final CommitService commitService;
 
     @GetMapping("/")
     public String index(Model model, @LoginUser SessionUser user, @PageableDefault(size = 20,sort = "boardId",direction = Sort.Direction.DESC)Pageable pageable){
@@ -42,7 +45,9 @@ public class IndexController {
     @GetMapping("board/update/{boardId}")
     public String update(@PathVariable Long boardId, Model model){
         ReadDto dto = boardService.findById(boardId);
+//        CommitReadDto commitReadDto = commitService.f
         model.addAttribute("board",dto);
+//        model.addAttribute("commit",commitService)
         return "boardUpdate";
     }
 }
