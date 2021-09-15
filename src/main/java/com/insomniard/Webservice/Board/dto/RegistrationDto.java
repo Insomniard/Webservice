@@ -19,6 +19,7 @@ public class RegistrationDto {
         this.author = author;
     }
 
+
     public Board toEntity(){
         return Board.builder()
                 .title(title)
