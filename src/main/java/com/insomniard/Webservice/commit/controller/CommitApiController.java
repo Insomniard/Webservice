@@ -1,19 +1,28 @@
 package com.insomniard.Webservice.commit.controller;
 
+import com.insomniard.Webservice.Board.dto.ReadListDto;
+import com.insomniard.Webservice.Board.service.BoardService;
+import com.insomniard.Webservice.commit.dto.CommitReadDto;
 import com.insomniard.Webservice.commit.dto.CommitRegistrationDto;
+import com.insomniard.Webservice.commit.service.CommitService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/api/v1/board/update")
+@RequestMapping("/api/v1/board/")
 public class CommitApiController {
 
-    @PostMapping("{boardId}")
+    private final CommitService commitService;
+    @PostMapping("{boardId}/")
     public Long registration(@PathVariable Long boardId, CommitRegistrationDto commitRegistrationDto){
         return 1L;
     }
-
-
-
+//    @GetMapping("{boardId}")
+//    public List<CommitReadDto> findAllDesc(@PathVariable Long boardId){
+//        return commitService.findAllDesc(boardId);
+//    }
 }
