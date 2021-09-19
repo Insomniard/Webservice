@@ -6,6 +6,7 @@ import com.insomniard.Webservice.Board.dto.ReadListDto;
 import com.insomniard.Webservice.Board.dto.RegistrationDto;
 import com.insomniard.Webservice.Board.dto.updateDto;
 import com.insomniard.Webservice.Board.entity.Board;
+import com.insomniard.Webservice.commit.dto.CommitReadDto;
 import com.insomniard.Webservice.commit.entity.Commit;
 import com.insomniard.Webservice.commit.repository.CommitRepository;
 import lombok.RequiredArgsConstructor;
@@ -36,8 +37,8 @@ public class BoardService {
 
     public ReadDto findById (Long boardId){
         Board entity = boardRepository.findById(boardId).orElseThrow(() -> new IllegalArgumentException("게시글이 존재하지 않습니다. No = " +boardId));
-//        entity.getCommit().get(findAllDesc()) = commitRepository.findByBoardId(boardId);
-        return new ReadDto(entity);
+        List<CommitReadDto> commits = boardRepository.findById(boardId).get().getCommit().stream().map(commit -> new CommitReadDto(commit)).collect(Collectors.toList());
+        return new ReadDto(entity, commits);
     }
 
     @Transactional(readOnly = true)
