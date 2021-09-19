@@ -31,9 +31,4 @@ public class CommitService {
     public Long registration(CommitRegistrationDto commitRegistrationDto){
         return commitRepository.save(commitRegistrationDto.toEntity()).getCommitId();
     }
-    @Transactional(readOnly = true)
-    public List<CommitReadDto> findAllDesc(Long boardId){
-        return boardRepository.findById(boardId).get().getCommit().stream().map(board -> new CommitReadDto(board)).collect(Collectors.toList());
-
-    }
 }

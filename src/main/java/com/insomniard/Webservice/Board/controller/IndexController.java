@@ -3,6 +3,7 @@ package com.insomniard.Webservice.Board.controller;
 import com.insomniard.Webservice.Board.dto.ReadDto;
 import com.insomniard.Webservice.Board.service.BoardService;
 import com.insomniard.Webservice.commit.dto.CommitReadDto;
+import com.insomniard.Webservice.commit.entity.Commit;
 import com.insomniard.Webservice.commit.service.CommitService;
 import com.insomniard.Webservice.config.auth.LoginUser;
 import com.insomniard.Webservice.config.dto.SessionUser;
@@ -14,6 +15,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+
+import java.util.List;
 
 @RequiredArgsConstructor
 @Controller

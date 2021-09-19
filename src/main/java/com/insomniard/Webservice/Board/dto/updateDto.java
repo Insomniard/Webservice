@@ -11,7 +11,6 @@ public class updateDto {
     private String contents;
 
     @Builder
-
     public updateDto(String title, String contents) {
         this.title = title;
         this.contents = contents;
