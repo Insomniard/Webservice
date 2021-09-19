@@ -5,6 +5,8 @@ import com.insomniard.Webservice.Board.dto.ReadListDto;
 import com.insomniard.Webservice.Board.dto.RegistrationDto;
 import com.insomniard.Webservice.Board.dto.updateDto;
 import com.insomniard.Webservice.Board.service.BoardService;
+import com.insomniard.Webservice.commit.dto.CommitReadDto;
+import com.insomniard.Webservice.commit.entity.Commit;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;

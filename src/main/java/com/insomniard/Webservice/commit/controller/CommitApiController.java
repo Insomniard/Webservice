@@ -17,12 +17,8 @@ import java.util.List;
 public class CommitApiController {
 
     private final CommitService commitService;
-    @PostMapping("{boardId}/")
+    @PostMapping("{boardId}")
     public Long registration(@PathVariable Long boardId, CommitRegistrationDto commitRegistrationDto){
         return 1L;
     }
-//    @GetMapping("{boardId}")
-//    public List<CommitReadDto> findAllDesc(@PathVariable Long boardId){
-//        return commitService.findAllDesc(boardId);
-//    }
 }

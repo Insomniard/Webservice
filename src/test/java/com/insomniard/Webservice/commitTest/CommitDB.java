@@ -79,15 +79,12 @@ public class CommitDB {
     @Test
     @Transactional//여러가지 트렌젝션을 묶어서 롤백도시켜주는 개 혜자 어노테이션
     public void 게시글조회테스트(){
-        Optional<Board> optBoard = boardRepository.findById(60L);
+        Optional<Board> optBoard = boardRepository.findById(55L);
         System.out.println(optBoard.isPresent());
-       // System.out.println("123123123");
         Board board = optBoard.get();
         System.out.println(board.getBoardId());
         List<Commit> commits = board.getCommit();
         System.out.println(commits.toString());
-//        commits.forEach(c -> System.out.println(c.getCommitId()));
-        //System.out.println(board.toString() + commits.toString());
 
     }
 
