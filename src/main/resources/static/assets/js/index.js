@@ -17,6 +17,9 @@ var main = {
         $('#btn-read').on('click', function () {
             _this.read();
         });
+        $('#btn-registration-commit').on('click', function () {
+            _this.save_commit();
+        });
     },
 
     // read : function () {
@@ -55,6 +58,26 @@ var main = {
             alert(JSON.stringify(error));
         });
     },
+    save_commit : function (){
+        var data = {
+            contents: $('#content').val()
+        };
+        var boardId = $('#boardId').val();
+        $.ajax({
+            type: 'POST',
+            url: '/api/v1/board/'+boardId,
+            dataType: 'json',
+            contentType:'application/json; charset=utf-8',
+            data: JSON.stringify(data)
+        }).done(function (){
+            alert('작성 완료');
+            window.location.href='/';
+        }).fail(function (error){
+            alert(JSON.stringify(error));
+        });
+    },
+
+
     update : function (){
         var data = {
             title: $('#title').val(),
