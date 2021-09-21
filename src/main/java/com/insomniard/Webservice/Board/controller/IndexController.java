@@ -54,4 +54,8 @@ public class IndexController {
 //        model.addAttribute("commit",commitService)
         return "boardUpdate";
     }
+    @GetMapping("/board/update//{boardId}/registration")
+    public String register(@PathVariable Long boardId){
+        return "commitregistration";
+    }
 }

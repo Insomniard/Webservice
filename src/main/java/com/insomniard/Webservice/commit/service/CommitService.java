@@ -22,13 +22,14 @@ import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @Service
-@Repository
 public class CommitService {
     private final UserRepository userRepository;
     private final CommitRepository commitRepository;
     private final BoardRepository boardRepository;
+
     @Transactional
     public Long registration(CommitRegistrationDto commitRegistrationDto){
         return commitRepository.save(commitRegistrationDto.toEntity()).getCommitId();
     }
+
 }

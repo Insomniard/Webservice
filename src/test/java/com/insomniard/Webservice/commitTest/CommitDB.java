@@ -5,14 +5,24 @@ import com.insomniard.Webservice.Account.domain.UserRepository;
 import com.insomniard.Webservice.Board.Repository.BoardRepository;
 import com.insomniard.Webservice.Board.dto.ReadDto;
 import com.insomniard.Webservice.Board.entity.Board;
+import com.insomniard.Webservice.commit.controller.CommitApiController;
 import com.insomniard.Webservice.commit.dto.CommitReadDto;
 import com.insomniard.Webservice.commit.dto.CommitRegistrationDto;
 import com.insomniard.Webservice.commit.entity.Commit;
 import com.insomniard.Webservice.commit.repository.CommitRepository;
 import com.insomniard.Webservice.commit.service.CommitService;
+import org.aspectj.lang.annotation.Before;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.boot.test.web.client.TestRestTemplate;
+import org.springframework.boot.web.server.LocalServerPort;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.MockMvcBuilder;
+import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
@@ -23,17 +33,19 @@ import java.util.stream.LongStream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@SpringBootTest
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class CommitDB {
+
     @Autowired
     private CommitRepository commitRepository;
     @Autowired
     private UserRepository userRepository;
     @Autowired
     private BoardRepository boardRepository;
-
     @Autowired
     private CommitService service;
+    @Autowired
+    private TestRestTemplate testRestTemplate;
 
     @Test
     public void 댓글연결이되었나요(){
@@ -96,9 +108,6 @@ public class CommitDB {
 //        System.out.println(test);
 //    }
 
-    public void 댓글등록컨트롤러테스트(){
-
-    }
     @Test
     public void 특정댓글조회(){
             Optional<Commit> test = commitRepository.findById(22L);
@@ -111,6 +120,22 @@ public class CommitDB {
                 .contents("test 1")
                 .author("jjyyong").build();
         Long commitId = service.registration(dto);
+    }
+    @LocalServerPort
+    private int port;
+    @Test
+    public void 댓글등록컨트롤러테스트() throws Exception{
+        Long boardId = 8L;
+        String content = "controllerTest1";
+        String author = "controllerTest1";
+        CommitRegistrationDto commitRegistrationDto = CommitRegistrationDto.builder().contents(content).author(author).build();
+        String url = "http://localhost:" + 8080 + "/api/v1/board/" + boardId;
+        ResponseEntity<Long> responseEntity = testRestTemplate.postForEntity(url,commitRegistrationDto,Long.class);
+        assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.OK);
+        assertThat(responseEntity.getBody()).isGreaterThan(8L);
+        List<Commit> all = commitRepository.findAll();
+        assertThat(all.get(8).getContents()).isEqualTo(content);
+        assertThat(all.get(8).getAuthor()).isEqualTo(author);
     }
 //    @Test
 //    public void 댓글조회서비스테스트(){

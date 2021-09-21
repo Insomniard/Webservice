@@ -12,6 +12,7 @@ import java.util.List;
 @EnableJpaAuditing
 
 public interface CommitRepository extends JpaRepository<Commit, Long> {
+    Commit findByBoardBoardId(Long boardId);
 //    @Modifying
 //    @Query("delete from Commit c where c.board.boardId = :boardId")
 //    void deleteByBoardId(Long boardId);
