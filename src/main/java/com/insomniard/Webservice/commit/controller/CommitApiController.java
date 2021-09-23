@@ -1,5 +1,6 @@
 package com.insomniard.Webservice.commit.controller;
 
+import com.insomniard.Webservice.Board.Repository.BoardRepository;
 import com.insomniard.Webservice.Board.dto.ReadDto;
 import com.insomniard.Webservice.Board.dto.ReadListDto;
 import com.insomniard.Webservice.Board.service.BoardService;
