@@ -1,6 +1,5 @@
 # Spring boot를 활용한 게시판
 
-www.jjyyeong.com
 
 #
 
